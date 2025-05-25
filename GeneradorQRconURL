@@ -1,0 +1,31 @@
+#Elaborado por Miguel Angel Reyes Hernandez
+#Generador de QR para mostrar enlaces
+
+import qrcode
+from PIL import Image
+
+def generar_qr(link):
+    #Crear el código QR a partir del enlace
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(link)
+    qr.make(fit=True)
+
+    #Generar imagen del código QR
+    img = qr.make_image(fill='black', back_color='white')
+    
+    #Mostrar el código QR
+    img.show()
+
+    #---------- Guardar la imagen -----------------------------
+    #img.save(nombre_archivo)
+    #print(f"El código QR se ha guardado como '{nombre_archivo}'.")
+    #----------------------------------------------------------
+
+# Ejecutar
+link = "https://forms.gle/HNMMRDpY1ZiWAX4w5" # <------------------- PONER AQUÍ EL ENLACE
+generar_qr(link)
